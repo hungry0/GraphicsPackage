@@ -68,6 +68,10 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             public MaterialProperty occlusionStrength;
             public MaterialProperty occlusionMap;
 
+            // Cloth Input Props
+            public MaterialProperty sheenColor;
+            public MaterialProperty subsurfaceColor;
+
             // Advanced Props
             public MaterialProperty highlights;
             public MaterialProperty reflections;
@@ -87,6 +91,11 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
                 bumpScaleProp = BaseShaderGUI.FindProperty("_BumpScale", properties, false);
                 occlusionStrength = BaseShaderGUI.FindProperty("_OcclusionStrength", properties, false);
                 occlusionMap = BaseShaderGUI.FindProperty("_OcclusionMap", properties, false);
+
+                // Cloth Input Props
+                sheenColor = BaseShaderGUI.FindProperty("_SheenColor", properties, false);
+                subsurfaceColor = BaseShaderGUI.FindProperty("_SubsurfaceColor", properties, false);
+
                 // Advanced Props
                 highlights = BaseShaderGUI.FindProperty("_SpecularHighlights", properties, false);
                 reflections = BaseShaderGUI.FindProperty("_EnvironmentReflections", properties, false);

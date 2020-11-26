@@ -20,11 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20080e0f-198f-4ec2-bf5d-c5c0a756900f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/BRDF.hlsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/BRDF.hlsl.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/BRDF.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/BRDF.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,9 +35,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/ShaderLibrary/BSDF.hlsl" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -47,6 +46,7 @@
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitCommon.hlsl" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitInput.hlsl" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/ShadingCommon.hlsl" />
+        <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/ShaderLibrary/BSDF.hlsl" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/BRDF.hlsl" />
       </list>
@@ -97,7 +97,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606363765734</updated>
-      <workItem from="1606363779300" duration="4658000" />
+      <workItem from="1606363779300" duration="5260000" />
+      <workItem from="1606375565106" duration="16000" />
+      <workItem from="1606375652230" duration="1195000" />
+      <workItem from="1606376875056" duration="76000" />
     </task>
     <servers />
   </component>
@@ -116,6 +119,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

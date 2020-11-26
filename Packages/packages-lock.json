@@ -31,13 +31,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "7.3.1",
-      "depth": 1,
-      "source": "registry",
+      "version": "file:../Dependency/com.unity.render-pipelines.core@7.3.1",
+      "depth": 0,
+      "source": "local",
       "dependencies": {
         "com.unity.ugui": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
+      }
     },
     "com.unity.render-pipelines.universal": {
       "version": "file:../Dependency/com.unity.render-pipelines.universal@7.3.1",

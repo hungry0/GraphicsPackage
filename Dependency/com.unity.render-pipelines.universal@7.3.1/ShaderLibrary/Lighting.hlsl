@@ -7,7 +7,7 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/BSDF.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
-
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/BRDF.hlsl"
 
 // If lightmap is not defined than we evaluate GI (ambient + probes) from SH
 // We might do it fully or partially in vertex to save shader ALU
@@ -363,6 +363,49 @@ half3 DirectBDRF(BRDFData brdfData, half3 normalWS, half3 lightDirectionWS, half
 #endif
 }
 
+float ClearCoatLobe(float clearCoatRoughness, float clearCoat, float3 H, float NoH, float LoH, out float Fcc)
+{
+    float clearCoatNoH = NoH;
+
+    float D = D_GGX(clearCoatNoH, clearCoatRoughness);
+    float V = V_Kelemen(LoH);
+    float F = F_Schlick(0.04, 1.0, LoH) * clearCoat;
+
+    Fcc = F;
+    return D * V * F;
+}
+
+//clearCoat变量可以认为是强度
+half3 ClearCloatBRDF(BRDFData brdfData, half3 normalWS, half3 lightDirectionWS, half3 viewDirectionWS, float clearCoatPerceptualRoughness, float clearCoat)
+{
+    float3 halfDir = SafeNormalize(float3(lightDirectionWS) + float3(viewDirectionWS));
+
+    float NoH = saturate(dot(normalWS, halfDir));
+    half LoH = saturate(dot(lightDirectionWS, halfDir));
+
+    float d = NoH * NoH * brdfData.roughness2MinusOne + 1.00001f;
+
+    half LoH2 = LoH * LoH;
+    half specularTerm = brdfData.roughness2 / ((d * d) * max(0.1h, LoH2) * brdfData.normalizationTerm);
+    
+    half3 color = specularTerm * brdfData.specular + brdfData.diffuse;
+
+    // Clear Coat 
+    clearCoatPerceptualRoughness = clamp(clearCoatPerceptualRoughness, 0.089, 1.0);
+    float clearCoatRoughness = clearCoatPerceptualRoughness * clearCoatPerceptualRoughness;
+
+    float Fcc;
+    float3 zero = float3(0,0,0);
+    float clearCoatResult = ClearCoatLobe(clearCoatRoughness, clearCoat, zero, NoH, LoH, Fcc);
+    float attenuation = 1.0 - Fcc;
+
+    float3 colorResult = color * attenuation + float3(clearCoatResult, clearCoatResult, clearCoatResult);
+
+    return colorResult;
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //                      Global Illumination                                  //
 ///////////////////////////////////////////////////////////////////////////////
@@ -545,7 +588,12 @@ half3 LightingPhysicallyBased(BRDFData brdfData, Light light, half3 normalWS, ha
     return LightingPhysicallyBased(brdfData, light.color, light.direction, light.distanceAttenuation * light.shadowAttenuation, normalWS, viewDirectionWS);
 }
 
-
+half3 LightingPhysicallyBasedClearCoat(BRDFData brdfData, Light light, half3 normalWS, half3 viewDirectionWS, float clearCoatPerceptualRoughness, float clearCoat)
+{
+    half NdotL = saturate(dot(normalWS, light.direction));
+    half3 radiance = light.color * (light.distanceAttenuation * light.shadowAttenuation) * NdotL;
+    return ClearCloatBRDF(brdfData, normalWS, light.direction, viewDirectionWS, clearCoatPerceptualRoughness, clearCoat) * radiance;
+}
 
 half3 VertexLighting(float3 positionWS, half3 normalWS)
 {
@@ -578,6 +626,7 @@ half4 UniversalFragmentPBR(InputData inputData, half3 albedo, half metallic, hal
     MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
 
     half3 color = GlobalIllumination(brdfData, inputData.bakedGI, occlusion, inputData.normalWS, inputData.viewDirectionWS);
+
     color += LightingPhysicallyBased(brdfData, mainLight, inputData.normalWS, inputData.viewDirectionWS);
 
 #ifdef _ADDITIONAL_LIGHTS
@@ -592,6 +641,36 @@ half4 UniversalFragmentPBR(InputData inputData, half3 albedo, half metallic, hal
 #ifdef _ADDITIONAL_LIGHTS_VERTEX
     color += inputData.vertexLighting * brdfData.diffuse;
 #endif
+
+    color += emission;
+    return half4(color, alpha);
+}
+
+half4 UniversalFragmentPBRClearCoat(InputData inputData, half3 albedo, half metallic, half3 specular,
+    half smoothness, half occlusion, half3 emission, half alpha)
+{
+    BRDFData brdfData;
+    InitializeBRDFData(albedo, metallic, specular, smoothness, alpha, brdfData);
+    
+    Light mainLight = GetMainLight(inputData.shadowCoord);
+    MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
+
+    half3 color = GlobalIllumination(brdfData, inputData.bakedGI, occlusion, inputData.normalWS, inputData.viewDirectionWS);
+
+    color += LightingPhysicallyBasedClearCoat(brdfData, mainLight, inputData.normalWS, inputData.viewDirectionWS, 0.1, 1.0);
+
+    #ifdef _ADDITIONAL_LIGHTS
+    uint pixelLightCount = GetAdditionalLightsCount();
+    for (uint lightIndex = 0u; lightIndex < pixelLightCount; ++lightIndex)
+    {
+        Light light = GetAdditionalLight(lightIndex, inputData.positionWS);
+        color += LightingPhysicallyBased(brdfData, light, inputData.normalWS, inputData.viewDirectionWS);
+    }
+    #endif
+
+    #ifdef _ADDITIONAL_LIGHTS_VERTEX
+    color += inputData.vertexLighting * brdfData.diffuse;
+    #endif
 
     color += emission;
     return half4(color, alpha);

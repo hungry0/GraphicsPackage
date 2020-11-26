@@ -585,6 +585,12 @@ real V_Charlie(real NdotL, real NdotV, real roughness)
     return 1.0 / ((1.0 + lambdaV + lambdaL) * (4.0 * NdotV * NdotL));
 }
 
+// 来源：Filament,用途：Clear Coat
+real V_Kelemen(float LdotH)
+{
+    return 0.25 / (LdotH * LdotH);
+}
+
 // We use V_Ashikhmin instead of V_Charlie in practice for game due to the cost of V_Charlie
 real V_Ashikhmin(real NdotL, real NdotV)
 {

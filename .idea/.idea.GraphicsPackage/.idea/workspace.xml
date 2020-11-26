@@ -20,13 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20080e0f-198f-4ec2-bf5d-c5c0a756900f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/ClearCoat.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/ClearCoat.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Dielectric.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Dielectric.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat/LightingData.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat/LightingData.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat/ReflectionProbe-0.exr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat/ReflectionProbe-0.exr.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat/ReflectionProbe-1.exr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat/ReflectionProbe-1.exr.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.core@7.3.1/ShaderLibrary/BSDF.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.core@7.3.1/ShaderLibrary/BSDF.hlsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/BRDF.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/BRDF.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitForwardPass.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitForwardPass.hlsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +52,15 @@
       <list>
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Editor/ShaderGUI/ShadingModels/LitGUI.cs" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/Lit.shader" />
-        <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitForwardPass.hlsl" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Editor/ShaderGUI/BaseShaderGUI.cs" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitCommon.hlsl" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitInput.hlsl" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/ShadingCommon.hlsl" />
         <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/ShaderLibrary/BSDF.hlsl" />
-        <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" />
         <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/BRDF.hlsl" />
+        <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.core@7.3.1/ShaderLibrary/BSDF.hlsl" />
+        <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitForwardPass.hlsl" />
+        <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" />
       </list>
     </option>
   </component>
@@ -62,6 +74,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -101,6 +114,8 @@
       <workItem from="1606375565106" duration="16000" />
       <workItem from="1606375652230" duration="1195000" />
       <workItem from="1606376875056" duration="76000" />
+      <workItem from="1606377082408" duration="149000" />
+      <workItem from="1606377261691" duration="12237000" />
     </task>
     <servers />
   </component>
@@ -122,12 +137,13 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="859" y="308" width="840" height="1034" key="search.everywhere.popup" timestamp="1606372780429">
+    <state x="859" y="308" width="840" height="1034" key="search.everywhere.popup" timestamp="1606381244378">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="859" y="308" width="840" height="1034" key="search.everywhere.popup/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1606372780429" />
+    <state x="859" y="308" width="840" height="1034" key="search.everywhere.popup/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1606381244378" />
   </component>
 </project>

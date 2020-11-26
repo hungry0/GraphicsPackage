@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor.Rendering.Universal;
+using UnityEditor.Rendering.Universal.ShaderGUI;
 
 namespace UnityEditor
 {
@@ -13,6 +14,22 @@ namespace UnityEditor
         {
             Opaque,
             Transparent
+        }
+
+        public enum ShadindModel
+        {
+            UnLit = 0,
+            DefaultLit,
+            SubSurface,
+            PreIntegratedSkin,
+            CleatCoat,
+            SubsurfaceProfile,
+            TwoSidedFoliage,
+            Hair,
+            Cloth,
+            Eye,
+            SingleLayerWater,
+            ThinTranslucent,
         }
 
         public enum BlendMode
@@ -50,6 +67,8 @@ namespace UnityEditor
 
             public static readonly GUIContent surfaceType = new GUIContent("Surface Type",
                 "Select a surface type for your texture. Choose between Opaque or Transparent.");
+            
+            public static readonly GUIContent shadingModelText = new GUIContent("Shading Model", "Select a shading model type.");
 
             public static readonly GUIContent blendingMode = new GUIContent("Blending Mode",
                 "Controls how the color of the Transparent surface blends with the Material color in the background.");
@@ -92,6 +111,8 @@ namespace UnityEditor
         protected MaterialEditor materialEditor { get; set; }
 
         protected MaterialProperty surfaceTypeProp { get; set; }
+        
+        protected MaterialProperty shadingModelProp { get; set; }
 
         protected MaterialProperty blendModeProp { get; set; }
 
@@ -142,6 +163,7 @@ namespace UnityEditor
         public virtual void FindProperties(MaterialProperty[] properties)
         {
             surfaceTypeProp = FindProperty("_Surface", properties);
+            shadingModelProp = FindProperty("_ShadingModelID", properties);
             blendModeProp = FindProperty("_Blend", properties);
             cullingProp = FindProperty("_Cull", properties);
             alphaClipProp = FindProperty("_AlphaClip", properties);
@@ -234,6 +256,8 @@ namespace UnityEditor
         public virtual void DrawSurfaceOptions(Material material)
         {
             DoPopup(Styles.surfaceType, surfaceTypeProp, Enum.GetNames(typeof(SurfaceType)));
+            DoPopup(Styles.shadingModelText, shadingModelProp, Enum.GetNames(typeof(ShadindModel)));
+            
             if ((SurfaceType)material.GetFloat("_Surface") == SurfaceType.Transparent)
                 DoPopup(Styles.blendingMode, blendModeProp, Enum.GetNames(typeof(BlendMode)));
 

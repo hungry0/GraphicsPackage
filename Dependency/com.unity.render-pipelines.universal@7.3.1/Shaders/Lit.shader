@@ -4,6 +4,7 @@ Shader "Universal Render Pipeline/Lit"
     {
         // Specular vs Metallic workflow
         [HideInInspector] _WorkflowMode("WorkflowMode", Float) = 1.0
+        [HideInInspector] _ShadingModelID("ShadingModel", Float) = 1.0
 
         [MainColor] _BaseColor("Color", Color) = (1,1,1,1)
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}

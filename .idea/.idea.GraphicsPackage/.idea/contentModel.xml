@@ -345,6 +345,7 @@
             <e p="ShaderGraphFunctions.hlsl" t="Include" />
             <e p="ShaderTypes.cs" t="Include" />
             <e p="ShaderTypes.cs.hlsl" t="Include" />
+            <e p="ShadingCommon.hlsl" t="Include" />
             <e p="Shadows.hlsl" t="Include" />
             <e p="SurfaceInput.hlsl" t="Include" />
             <e p="Unity.RenderPipelines.Universal.ShaderLibrary.asmdef" t="Include" />

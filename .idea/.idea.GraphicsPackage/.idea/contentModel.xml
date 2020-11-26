@@ -334,6 +334,7 @@
             <e p="UniversalRenderPipelineCore.cs" t="Include" />
           </e>
           <e p="ShaderLibrary" t="Include">
+            <e p="BRDF.hlsl" t="Include" />
             <e p="Core.hlsl" t="Include" />
             <e p="DeclareDepthTexture.hlsl" t="Include" />
             <e p="DeclareOpaqueTexture.hlsl" t="Include" />

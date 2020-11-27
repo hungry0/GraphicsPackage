@@ -140,9 +140,10 @@ half4 LitPassFragment(Varyings input) : SV_Target
     half4 color = half4(0,0,0,0);
     if(_ShadingModelID == SHADINGMODELID_DEFAULT_LIT)
         color += UniversalFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
+#if _MATERIAL_SHADINGMODEL_CLEAR_COAT
     else if(_ShadingModelID == SHADINGMODELID_CLEAR_COAT)
-        color += UniversalFragmentPBRClearCoat(inputData, surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.occlusion, surfaceData.emission, surfaceData.alpha);
-    
+        color += UniversalFragmentPBRClearCoat(inputData, surfaceData);
+#endif    
     color.rgb = MixFog(color.rgb, inputData.fogCoord);
 
     return color;

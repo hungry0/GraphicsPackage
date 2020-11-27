@@ -16,10 +16,16 @@ half _Smoothness;
 half _Metallic;
 half _BumpScale;
 half _OcclusionStrength;
+
+int _ShadingModelID;
+
+#if _MATERIAL_SHADINGMODEL_CLEAR_COAT
+float _ClearCoat;    
+float _ClearCoatRoughness;    
+#endif
 CBUFFER_END
 
-//TODO 打断了SRP Batcher ？？？
-int _ShadingModelID;
+
 
 TEXTURE2D(_OcclusionMap);       SAMPLER(sampler_OcclusionMap);
 TEXTURE2D(_MetallicGlossMap);   SAMPLER(sampler_MetallicGlossMap);
@@ -94,6 +100,12 @@ inline void InitializeStandardLitSurfaceData(float2 uv, out SurfaceData outSurfa
     outSurfaceData.normalTS = SampleNormal(uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
     outSurfaceData.occlusion = SampleOcclusion(uv);
     outSurfaceData.emission = SampleEmission(uv, _EmissionColor.rgb, TEXTURE2D_ARGS(_EmissionMap, sampler_EmissionMap));
+    
+#if _MATERIAL_SHADINGMODEL_CLEAR_COAT
+    outSurfaceData.clearCoat = _ClearCoat;
+    outSurfaceData.clearCoatRoughness = _ClearCoatRoughness;
+#endif
+    
 }
 
 #endif // UNIVERSAL_INPUT_SURFACE_PBR_INCLUDED

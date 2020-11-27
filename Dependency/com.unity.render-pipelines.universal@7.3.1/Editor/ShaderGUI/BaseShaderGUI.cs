@@ -113,6 +113,11 @@ namespace UnityEditor
         protected MaterialProperty surfaceTypeProp { get; set; }
         
         protected MaterialProperty shadingModelProp { get; set; }
+        
+        // Clear Coat
+        protected MaterialProperty clearCoatProp { get; set; }
+        
+        protected MaterialProperty clearCoatRoughnessProp { get; set; }
 
         protected MaterialProperty blendModeProp { get; set; }
 
@@ -164,6 +169,8 @@ namespace UnityEditor
         {
             surfaceTypeProp = FindProperty("_Surface", properties);
             shadingModelProp = FindProperty("_ShadingModelID", properties);
+            // clearCoatProp = FindProperty("_ClearCoat", properties);
+            // clearCoatRoughnessProp = FindProperty("_ClearCoatRoughness", properties);
             blendModeProp = FindProperty("_Blend", properties);
             cullingProp = FindProperty("_Cull", properties);
             alphaClipProp = FindProperty("_AlphaClip", properties);

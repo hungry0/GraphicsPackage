@@ -23,6 +23,10 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
         {
             public static GUIContent workflowModeText = new GUIContent("Workflow Mode",
                 "Select a workflow that fits your textures. Choose between Metallic or Specular.");
+            
+            public static GUIContent clearCoatText = new GUIContent("Clear Coat", "Clear Coat.");
+            
+            public static GUIContent clearCoatRoughnessText = new GUIContent("Clear Coat Roughness", "CCR");
 
             public static GUIContent specularMapText =
                 new GUIContent("Specular Map", "Sets and configures the map and color for the Specular workflow.");
@@ -68,6 +72,10 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             public MaterialProperty bumpScaleProp;
             public MaterialProperty occlusionStrength;
             public MaterialProperty occlusionMap;
+            
+            //Clear Coat
+            public MaterialProperty clearCoat;
+            public MaterialProperty clearCoatRoughness;
 
             // Advanced Props
             public MaterialProperty highlights;
@@ -78,6 +86,11 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
                 // Surface Option Props
                 workflowMode = BaseShaderGUI.FindProperty("_WorkflowMode", properties, false);
                 shadingModel = BaseShaderGUI.FindProperty("_ShadingModelID", properties, false);
+                
+                // Clear Coat
+                clearCoat = BaseShaderGUI.FindProperty("_ClearCoat", properties, false);
+                clearCoatRoughness = BaseShaderGUI.FindProperty("_ClearCoatRoughness", properties, false); 
+                
                 // Surface Input Props
                 metallic = BaseShaderGUI.FindProperty("_Metallic", properties);
                 specColor = BaseShaderGUI.FindProperty("_SpecColor", properties, false);
@@ -104,6 +117,29 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             {
                 materialEditor.TexturePropertySingleLine(Styles.occlusionText, properties.occlusionMap,
                     properties.occlusionMap.textureValue != null ? properties.occlusionStrength : null);
+            }
+
+            if (properties.clearCoat != null && properties.clearCoatRoughness != null)
+            {
+                // 需要判断是否点选了ClearCoat模式，只在此模式显示
+                var isClearCoat = ((BaseShaderGUI.ShadindModel)material.GetFloat("_ShadingModelID") == BaseShaderGUI.ShadindModel.CleatCoat);
+
+                if (!isClearCoat)
+                    return;
+                
+                EditorGUI.indentLevel++;
+                EditorGUI.BeginChangeCheck();
+                var clearCoatValue = EditorGUILayout.Slider(Styles.clearCoatText, properties.clearCoat.floatValue, 0f, 1f);
+                if (EditorGUI.EndChangeCheck())
+                    properties.clearCoat.floatValue = clearCoatValue;
+                EditorGUI.indentLevel--;
+                
+                EditorGUI.indentLevel++;
+                EditorGUI.BeginChangeCheck();
+                var clearCoatRoughnessValue = EditorGUILayout.Slider(Styles.clearCoatRoughnessText, properties.clearCoatRoughness.floatValue, 0f, 1f);
+                if (EditorGUI.EndChangeCheck())
+                    properties.clearCoatRoughness.floatValue = clearCoatRoughnessValue;
+                EditorGUI.indentLevel--;
             }
         }
 
@@ -193,6 +229,9 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             {
                 hasGlossMap = material.GetTexture("_MetallicGlossMap") != null;
             }
+            
+            if (material.HasProperty("_ShadingModelID"))
+                CoreUtils.SetKeyword(material, "_MATERIAL_SHADINGMODEL_CLEAR_COAT", (BaseShaderGUI.ShadindModel)material.GetFloat("_ShadingModelID") == BaseShaderGUI.ShadindModel.CleatCoat);
 
             CoreUtils.SetKeyword(material, "_SPECULAR_SETUP", isSpecularWorkFlow);
 

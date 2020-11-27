@@ -5,6 +5,9 @@ Shader "Universal Render Pipeline/Lit"
         // Specular vs Metallic workflow
         [HideInInspector] _WorkflowMode("WorkflowMode", Float) = 1.0
         [HideInInspector] _ShadingModelID("ShadingModel", Float) = 1.0
+        
+        [HideInInspector] _ClearCoat("ClearCoat", Float) = 1.0
+        [HideInInspector] _ClearCoatRoughness("ClearCoat Roughness", Float)  = 0.1
 
         [MainColor] _BaseColor("Color", Color) = (1,1,1,1)
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
@@ -96,6 +99,8 @@ Shader "Universal Render Pipeline/Lit"
             #pragma shader_feature _ENVIRONMENTREFLECTIONS_OFF
             #pragma shader_feature _SPECULAR_SETUP
             #pragma shader_feature _RECEIVE_SHADOWS_OFF
+
+            #pragma shader_feature _MATERIAL_SHADINGMODEL_CLEAR_COAT
 
             // -------------------------------------
             // Universal Pipeline keywords

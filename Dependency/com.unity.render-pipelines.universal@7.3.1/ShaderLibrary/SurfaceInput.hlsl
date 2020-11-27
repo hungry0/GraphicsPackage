@@ -20,6 +20,10 @@ struct SurfaceData
     half3 emission;
     half  occlusion;
     half  alpha;
+#if _MATERIAL_SHADINGMODEL_CLEAR_COAT
+    half clearCoat;
+    half clearCoatRoughness;
+#endif
 };
 
 ///////////////////////////////////////////////////////////////////////////////

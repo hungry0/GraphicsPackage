@@ -21,15 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="20080e0f-198f-4ec2-bf5d-c5c0a756900f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ClearCoat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/ClearCoat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Editor/ShaderGUI/BaseShaderGUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Editor/ShaderGUI/BaseShaderGUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Editor/ShaderGUI/ShadingModels/LitGUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Editor/ShaderGUI/ShadingModels/LitGUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/SurfaceInput.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/SurfaceInput.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/Lit.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/Lit.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitForwardPass.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitForwardPass.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitInput.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitInput.hlsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +108,7 @@
       <workItem from="1606376875056" duration="76000" />
       <workItem from="1606377082408" duration="149000" />
       <workItem from="1606377261691" duration="13442000" />
-      <workItem from="1606442554738" duration="18480000" />
+      <workItem from="1606442554738" duration="19947000" />
     </task>
     <servers />
   </component>

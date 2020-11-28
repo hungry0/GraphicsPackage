@@ -23,6 +23,12 @@ int _ShadingModelID;
 float _ClearCoat;    
 float _ClearCoatRoughness;    
 #endif
+
+#if _MATERIAL_SHADINGMODEL_CLOTH
+float _SheenColor;    
+float _SubsurfaceColor;    
+#endif
+
 CBUFFER_END
 
 
@@ -105,7 +111,11 @@ inline void InitializeStandardLitSurfaceData(float2 uv, out SurfaceData outSurfa
     outSurfaceData.clearCoat = _ClearCoat;
     outSurfaceData.clearCoatRoughness = _ClearCoatRoughness;
 #endif
-    
+
+#if _MATERIAL_SHADINGMODEL_CLOTH
+    outSurfaceData.sheenColor = _SheenColor;
+    outSurfaceData.subsurfaceColor = _SubsurfaceColor;
+#endif
 }
 
 #endif // UNIVERSAL_INPUT_SURFACE_PBR_INCLUDED

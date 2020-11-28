@@ -349,8 +349,8 @@ inline void InitializeBRDFData(SurfaceData surfaceData, out BRDFData outBRDFData
     outBRDFData.roughness2MinusOne = outBRDFData.roughness2 - 1.0h;
         
 #ifdef _ALPHAPREMULTIPLY_ON
-    outBRDFData.diffuse *= alpha;
-    alpha = alpha * oneMinusReflectivity + reflectivity;
+    outBRDFData.diffuse *= surfaceData.alpha;
+    surfaceData.alpha = surfaceData.alpha * oneMinusReflectivity + reflectivity;
 #endif
 
 #if _MATERIAL_SHADINGMODEL_CLEAR_COAT
@@ -439,6 +439,8 @@ half3 ClearCloatBRDF(BRDFData brdfData, half3 normalWS, half3 lightDirectionWS, 
     half specularTerm = brdfData.roughness2 / ((d * d) * max(0.1h, LoH2) * brdfData.normalizationTerm);
     
     half3 color = specularTerm * brdfData.specular + brdfData.diffuse;
+
+    // return color;
 
     // Clear Coat 
     clearCoatPerceptualRoughness = clamp(clearCoatPerceptualRoughness, 0.089, 1.0);
@@ -603,17 +605,20 @@ half3 GlobalIllumination(BRDFData brdfData, half3 bakedGI, half occlusion, half3
     half3 specular = surfaceReduction * indirectSpecular * lerp(brdfData.specular, brdfData.grazingTerm, fresnelTerm);
 
  #if _MATERIAL_SHADINGMODEL_CLEAR_COAT
-    float Fc = F_Schlick(0.04, 1.0, dot(normalWS, viewDirectionWS)) * brdfData.clearCoat;
-    float attention = 1.0f - Fc;
+    float NoV = saturate(dot(normalWS, viewDirectionWS));
+    float Fc = F_Schlick(0.04f, 1.0f, NoV) * brdfData.clearCoat;
+    float attention = 1.0f - Fc; 
     
     diffuse *= attention;
-    specular *= attention;
+    // TODO 这里存疑，按照能量守恒应该开启，但是在Unity中是有一个黑边儿，Why？
+    // 参考Filament 以及 UE的ReflectionEnvironment方法
+    // specular *= attention;
     
     half3 clearCoatSpecular = half3(0,0,0);
     {
         float clearCoatReduction = 1.0 / (brdfData.clearCoatpPerceptualRoughness + 1.0);
         half3 localSpecular = GlossyEnvironmentReflection(reflectVector, brdfData.clearCoatpPerceptualRoughness, 0);
-        clearCoatSpecular += clearCoatReduction * localSpecular * lerp(brdfData.specular, brdfData.grazingTerm, Fc);
+        clearCoatSpecular += clearCoatReduction * localSpecular * lerp(brdfData.specular, brdfData.grazingTerm, fresnelTerm);
     }
     
     specular += clearCoatSpecular * Fc;

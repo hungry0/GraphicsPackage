@@ -24,6 +24,11 @@ struct SurfaceData
     half clearCoat;
     half clearCoatRoughness;
 #endif
+
+#if _MATERIAL_SHADINGMODEL_CLOTH
+    half sheenColor;
+    half subsurfaceColor;
+#endif
 };
 
 ///////////////////////////////////////////////////////////////////////////////

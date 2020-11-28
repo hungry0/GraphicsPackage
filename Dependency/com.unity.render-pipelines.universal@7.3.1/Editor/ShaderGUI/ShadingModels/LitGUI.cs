@@ -27,6 +27,10 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             public static GUIContent clearCoatText = new GUIContent("Clear Coat", "Clear Coat.");
             
             public static GUIContent clearCoatRoughnessText = new GUIContent("Clear Coat Roughness", "CCR");
+            
+            public static GUIContent sheenColorText = new GUIContent("Sheen Color", "Cloth ...");
+            
+            public static GUIContent subsurfaceColorText = new GUIContent("Subsurface Color", "Cloth");
 
             public static GUIContent specularMapText =
                 new GUIContent("Specular Map", "Sets and configures the map and color for the Specular workflow.");
@@ -73,9 +77,13 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             public MaterialProperty occlusionStrength;
             public MaterialProperty occlusionMap;
             
-            //Clear Coat
+            // Clear Coat
             public MaterialProperty clearCoat;
             public MaterialProperty clearCoatRoughness;
+            
+            // Cloth
+            public MaterialProperty sheenColor;
+            public MaterialProperty subsurfaceColor;
 
             // Advanced Props
             public MaterialProperty highlights;
@@ -89,7 +97,11 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
                 
                 // Clear Coat
                 clearCoat = BaseShaderGUI.FindProperty("_ClearCoat", properties, false);
-                clearCoatRoughness = BaseShaderGUI.FindProperty("_ClearCoatRoughness", properties, false); 
+                clearCoatRoughness = BaseShaderGUI.FindProperty("_ClearCoatRoughness", properties, false);
+                
+                // Cloth
+                sheenColor = BaseShaderGUI.FindProperty("_SheenColor", properties, false);
+                subsurfaceColor = BaseShaderGUI.FindProperty("_SubsurfaceColor", properties, false);
                 
                 // Surface Input Props
                 metallic = BaseShaderGUI.FindProperty("_Metallic", properties);
@@ -141,6 +153,26 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
                     properties.clearCoatRoughness.floatValue = clearCoatRoughnessValue;
                 EditorGUI.indentLevel--;
             }
+
+            if (properties.sheenColor != null && properties.subsurfaceColor != null)
+            {
+                var isCloth = ((BaseShaderGUI.ShadindModel)material.GetFloat("_ShadingModelID") == BaseShaderGUI.ShadindModel.Cloth);
+                
+                if(!isCloth)
+                    return;
+
+                var rect = EditorGUILayout.GetControlRect();
+                
+                EditorGUI.BeginChangeCheck();
+                var sheen = EditorGUI.ColorField(rect, Styles.sheenColorText, properties.sheenColor.colorValue, true, false, false);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    materialEditor.RegisterPropertyChangeUndo(properties.sheenColor.displayName);
+                    properties.sheenColor.colorValue = sheen;
+                }
+            }
+            
+            
         }
 
         public static void DoMetallicSpecularArea(LitProperties properties, MaterialEditor materialEditor, Material material)
@@ -229,10 +261,13 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
             {
                 hasGlossMap = material.GetTexture("_MetallicGlossMap") != null;
             }
-            
-            if (material.HasProperty("_ShadingModelID"))
-                CoreUtils.SetKeyword(material, "_MATERIAL_SHADINGMODEL_CLEAR_COAT", (BaseShaderGUI.ShadindModel)material.GetFloat("_ShadingModelID") == BaseShaderGUI.ShadindModel.CleatCoat);
 
+            if (material.HasProperty("_ShadingModelID"))
+            {
+                CoreUtils.SetKeyword(material, "_MATERIAL_SHADINGMODEL_CLEAR_COAT", (BaseShaderGUI.ShadindModel)material.GetFloat("_ShadingModelID") == BaseShaderGUI.ShadindModel.CleatCoat);
+                CoreUtils.SetKeyword(material, "_MATERIAL_SHADINGMODEL_CLOTH", (BaseShaderGUI.ShadindModel)material.GetFloat("_ShadingModelID") == BaseShaderGUI.ShadindModel.Cloth);
+            }
+                
             CoreUtils.SetKeyword(material, "_SPECULAR_SETUP", isSpecularWorkFlow);
 
             CoreUtils.SetKeyword(material, "_METALLICSPECGLOSSMAP", hasGlossMap);

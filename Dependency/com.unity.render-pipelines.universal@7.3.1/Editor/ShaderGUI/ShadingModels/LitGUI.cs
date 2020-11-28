@@ -136,43 +136,54 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
                 // 需要判断是否点选了ClearCoat模式，只在此模式显示
                 var isClearCoat = ((BaseShaderGUI.ShadindModel)material.GetFloat("_ShadingModelID") == BaseShaderGUI.ShadindModel.CleatCoat);
 
-                if (!isClearCoat)
-                    return;
+                if (isClearCoat)
+                {
+                    EditorGUI.indentLevel++;
+                    EditorGUI.BeginChangeCheck();
+                    var clearCoatValue = EditorGUILayout.Slider(Styles.clearCoatText, properties.clearCoat.floatValue, 0f, 1f);
+                    if (EditorGUI.EndChangeCheck())
+                        properties.clearCoat.floatValue = clearCoatValue;
+                    EditorGUI.indentLevel--;
                 
-                EditorGUI.indentLevel++;
-                EditorGUI.BeginChangeCheck();
-                var clearCoatValue = EditorGUILayout.Slider(Styles.clearCoatText, properties.clearCoat.floatValue, 0f, 1f);
-                if (EditorGUI.EndChangeCheck())
-                    properties.clearCoat.floatValue = clearCoatValue;
-                EditorGUI.indentLevel--;
-                
-                EditorGUI.indentLevel++;
-                EditorGUI.BeginChangeCheck();
-                var clearCoatRoughnessValue = EditorGUILayout.Slider(Styles.clearCoatRoughnessText, properties.clearCoatRoughness.floatValue, 0f, 1f);
-                if (EditorGUI.EndChangeCheck())
-                    properties.clearCoatRoughness.floatValue = clearCoatRoughnessValue;
-                EditorGUI.indentLevel--;
+                    EditorGUI.indentLevel++;
+                    EditorGUI.BeginChangeCheck();
+                    var clearCoatRoughnessValue = EditorGUILayout.Slider(Styles.clearCoatRoughnessText, properties.clearCoatRoughness.floatValue, 0f, 1f);
+                    if (EditorGUI.EndChangeCheck())
+                        properties.clearCoatRoughness.floatValue = clearCoatRoughnessValue;
+                    EditorGUI.indentLevel--;
+                }
             }
 
             if (properties.sheenColor != null && properties.subsurfaceColor != null)
             {
                 var isCloth = ((BaseShaderGUI.ShadindModel)material.GetFloat("_ShadingModelID") == BaseShaderGUI.ShadindModel.Cloth);
-                
-                if(!isCloth)
-                    return;
 
-                var rect = EditorGUILayout.GetControlRect();
-                
-                EditorGUI.BeginChangeCheck();
-                var sheen = EditorGUI.ColorField(rect, Styles.sheenColorText, properties.sheenColor.colorValue, true, false, false);
-                if (EditorGUI.EndChangeCheck())
+                if (isCloth)
                 {
-                    materialEditor.RegisterPropertyChangeUndo(properties.sheenColor.displayName);
-                    properties.sheenColor.colorValue = sheen;
+                    var rect = EditorGUILayout.GetControlRect();
+                
+                    EditorGUI.indentLevel++;
+                    EditorGUI.BeginChangeCheck();
+                    var sheen = EditorGUI.ColorField(rect, Styles.sheenColorText, properties.sheenColor.colorValue, true, false, false);
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        materialEditor.RegisterPropertyChangeUndo(properties.sheenColor.displayName);
+                        properties.sheenColor.colorValue = sheen;
+                    }
+                    EditorGUI.indentLevel--;
+                    // rect.y += 100.0f;
+                    
+                    EditorGUI.indentLevel++;
+                    EditorGUI.BeginChangeCheck();
+                    var subsurface = EditorGUI.ColorField(EditorGUILayout.GetControlRect(), Styles.subsurfaceColorText, properties.subsurfaceColor.colorValue, true, false, false);
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        materialEditor.RegisterPropertyChangeUndo(properties.subsurfaceColor.displayName);
+                        properties.subsurfaceColor.colorValue = subsurface;
+                    }
+                    EditorGUI.indentLevel--;
                 }
             }
-            
-            
         }
 
         public static void DoMetallicSpecularArea(LitProperties properties, MaterialEditor materialEditor, Material material)

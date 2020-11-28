@@ -146,10 +146,11 @@ half4 LitPassFragment(Varyings input) : SV_Target
 #endif
 
 #if _MATERIAL_SHADINGMODEL_CLOTH
-    // else if(_ShadingModelID == SHADINGMODELID_CLOTH)
-    //    color += UniversalFragmentPBRClearCoat(inputData, surfaceData);
-        return half4(1,0,0,1);
-#endif    
+    else if(_ShadingModelID == SHADINGMODELID_CLOTH)
+       color += UniversalFragmentPBRCloth(inputData, surfaceData);
+        // return half4(surfaceData.subsurfaceColor,1.0f);
+#endif
+    
     color.rgb = MixFog(color.rgb, inputData.fogCoord);
 
     return color;

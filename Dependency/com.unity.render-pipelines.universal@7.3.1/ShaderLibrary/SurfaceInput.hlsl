@@ -26,8 +26,8 @@ struct SurfaceData
 #endif
 
 #if _MATERIAL_SHADINGMODEL_CLOTH
-    half sheenColor;
-    half subsurfaceColor;
+    half3 sheenColor;
+    half3 subsurfaceColor;
 #endif
 };
 

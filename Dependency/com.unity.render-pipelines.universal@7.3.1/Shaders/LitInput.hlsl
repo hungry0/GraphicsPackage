@@ -25,8 +25,8 @@ float _ClearCoatRoughness;
 #endif
 
 #if _MATERIAL_SHADINGMODEL_CLOTH
-float _SheenColor;    
-float _SubsurfaceColor;    
+half3 _SheenColor;    
+half3 _SubsurfaceColor;    
 #endif
 
 CBUFFER_END

@@ -260,6 +260,11 @@ struct BRDFData
     half clearCoat;
 #endif
 
+#if _MATERIAL_SHADINGMODEL_CLOTH
+    half3 sheenColor;
+    half3 subsurfaceColor;
+#endif
+
     // We save some light invariant BRDF terms so we don't have to recompute
     // them in the light loop. Take a look at DirectBRDF function for detailed explaination.
     half normalizationTerm;     // roughness * 4.0 + 2.0
@@ -317,10 +322,16 @@ inline void InitializeBRDFData(half3 albedo, half metallic, half3 specular, half
     alpha = alpha * oneMinusReflectivity + reflectivity;
 #endif
 
+// TODO 这里是为了除了Lit别的地方也需要调用而报错，后期整理修复，其实这一块没走进来
 #if _MATERIAL_SHADINGMODEL_CLEAR_COAT
     outBRDFData.clearCoat = 1.0f;
     outBRDFData.clearCoatpPerceptualRoughness = 0.1f;
-#endif    
+#endif
+
+#if _MATERIAL_SHADINGMODEL_CLOTH
+    outBRDFData.sheenColor = half3(1.0f,1.0f,1.0f);
+    outBRDFData.subsurfaceColor = half3(0.0f,0.0f,0.0f);
+#endif
 }
 
 inline void InitializeBRDFData(SurfaceData surfaceData, out BRDFData outBRDFData)
@@ -356,6 +367,11 @@ inline void InitializeBRDFData(SurfaceData surfaceData, out BRDFData outBRDFData
 #if _MATERIAL_SHADINGMODEL_CLEAR_COAT
     outBRDFData.clearCoat = surfaceData.clearCoat;
     outBRDFData.clearCoatpPerceptualRoughness = surfaceData.clearCoatRoughness;
+#endif
+
+#if _MATERIAL_SHADINGMODEL_CLOTH
+    outBRDFData.sheenColor = surfaceData.sheenColor;
+    outBRDFData.subsurfaceColor = surfaceData.subsurfaceColor;
 #endif
 }
 
@@ -456,6 +472,30 @@ half3 ClearCloatBRDF(BRDFData brdfData, half3 normalWS, half3 lightDirectionWS, 
     return colorResult;
 }
 
+#if _MATERIAL_SHADINGMODEL_CLOTH
+half3 ClothBRDF(BRDFData brdfData, half3 normalWS, half3 lightDirectionWS, half3 viewDirectionWS)
+{
+    float3 halfDir = SafeNormalize(float3(lightDirectionWS) + float3(viewDirectionWS));
+
+    float NoH = saturate(dot(normalWS, halfDir));
+    half LoH = saturate(dot(lightDirectionWS, halfDir));
+
+    half NoV = saturate(dot(normalWS, viewDirectionWS));
+    half NoL = saturate(dot(normalWS, lightDirectionWS));
+
+    float D = D_Charlie(NoH, brdfData.roughness);
+    float V = V_Neubelt(NoV, NoL);
+    float3 F = brdfData.sheenColor;
+    float3 Fr = (D * V ) * F;
+
+    float3 Fd = brdfData.diffuse *= Fd_Wrap(NoL, 0.5);
+    Fd *= saturate(brdfData.subsurfaceColor + NoL);
+    float3 color = Fd + Fr;
+
+    return color;
+}
+
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -671,6 +711,16 @@ half3 LightingPhysicallyBasedClearCoat(BRDFData brdfData, Light light, half3 nor
     return ClearCloatBRDF(brdfData, normalWS, light.direction, viewDirectionWS, clearCoatPerceptualRoughness, clearCoat) * radiance;
 }
 
+#if _MATERIAL_SHADINGMODEL_CLOTH
+half3 LightingPhysicallyBasedCloth(BRDFData brdfData, Light light, half3 normalWS, half3 viewDirectionWS)
+{
+    half NdotL = saturate(dot(normalWS, light.direction));
+    half3 radiance = light.color * (light.distanceAttenuation * light.shadowAttenuation) * NdotL;
+    return ClothBRDF(brdfData, normalWS, light.direction, viewDirectionWS) * radiance;
+}
+#endif
+
+
 half3 VertexLighting(float3 positionWS, half3 normalWS)
 {
     half3 vertexLightColor = half3(0.0, 0.0, 0.0);
@@ -752,6 +802,39 @@ half4 UniversalFragmentPBRClearCoat(InputData inputData, SurfaceData surfaceData
     return half4(color, surfaceData.alpha);   
 }
 #endif
+
+#if _MATERIAL_SHADINGMODEL_CLOTH
+half4 UniversalFragmentPBRCloth(InputData inputData, SurfaceData surfaceData)
+{
+    BRDFData brdfData;
+    InitializeBRDFData(surfaceData, brdfData);
+
+    Light mainLight = GetMainLight(inputData.shadowCoord);
+    MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
+
+    half3 color = GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.normalWS, inputData.viewDirectionWS);
+
+    color += LightingPhysicallyBasedCloth(brdfData, mainLight, inputData.normalWS, inputData.viewDirectionWS);
+
+    #ifdef _ADDITIONAL_LIGHTS
+    uint pixelLightCount = GetAdditionalLightsCount();
+    for (uint lightIndex = 0u; lightIndex < pixelLightCount; ++lightIndex)
+    {
+        Light light = GetAdditionalLight(lightIndex, inputData.positionWS);
+        color += LightingPhysicallyBased(brdfData, light, inputData.normalWS, inputData.viewDirectionWS);
+    }
+    #endif
+
+    #ifdef _ADDITIONAL_LIGHTS_VERTEX
+    color += inputData.vertexLighting * brdfData.diffuse;
+    #endif
+
+    color += surfaceData.emission;
+    return half4(color, surfaceData.alpha);   
+}
+#endif
+
+
 
 half4 UniversalFragmentBlinnPhong(InputData inputData, half3 diffuse, half4 specularGloss, half smoothness, half3 emission, half alpha)
 {

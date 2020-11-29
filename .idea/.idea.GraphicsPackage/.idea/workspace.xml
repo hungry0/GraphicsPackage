@@ -35,10 +35,10 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" />
       <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitInput.hlsl" />
       <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/SurfaceInput.hlsl" />
       <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitForwardPass.hlsl" />
+      <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1koP2i8Bjsbfl1AlJVFTsu0GZCf" />
@@ -60,7 +60,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="XThreadsFramesViewSplitterKey" value="0.35572687" />
-    <property name="settings.editor.selected.configurable" value="preferences.build.unityPlugin" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -104,7 +104,8 @@
       <workItem from="1606546452807" duration="451000" />
       <workItem from="1606552019203" duration="1949000" />
       <workItem from="1606575052767" duration="615000" />
-      <workItem from="1606575839309" duration="2003000" />
+      <workItem from="1606575839309" duration="2312000" />
+      <workItem from="1606616613073" duration="2754000" />
     </task>
     <servers />
   </component>

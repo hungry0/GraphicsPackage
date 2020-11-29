@@ -663,6 +663,14 @@ half3 GlobalIllumination(BRDFData brdfData, half3 bakedGI, half occlusion, half3
     
     specular += clearCoatSpecular * Fc;
 #endif
+
+#if _MATERIAL_SHADINGMODEL_CLOTH
+    float NoV = saturate(dot(normalWS, viewDirectionWS));
+    diffuse *= Fd_Wrap(NoV, 0.5);
+    diffuse *= saturate(brdfData.subsurfaceColor + NoV);
+
+    return diffuse;
+#endif
     
     return diffuse + specular;
 }

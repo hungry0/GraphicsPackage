@@ -20,15 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20080e0f-198f-4ec2-bf5d-c5c0a756900f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Editor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Editor/CSVReader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Editor/CSVReader.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/UE_LightmapData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/UE_LightmapData.csv.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Editor/CreateSSSLUT.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Editor/CreateSSSLUT.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUTSSS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/LUTSSS.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PreIntegratedSkin.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PreIntegratedSkin.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Shaders/CreateSSSLUT.shader" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Shaders/CreateSSSLUT.shader.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GraphicsPackage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ClearCoat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ClearCoat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ExampleAssets/Materials/Ground_Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExampleAssets/Materials/Ground_Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ExampleAssets/Materials/Metal_Simple_Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExampleAssets/Materials/Metal_Simple_Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ExampleAssets/Materials/Stud_Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExampleAssets/Materials/Stud_Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/ClearCoat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/ClearCoat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,20 +46,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/258CAC2D-1033-4196-8373-0E6FC8342BDE/b6/de4d967c/XmlElement.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/3b/1a20289b/Assert.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/2d/d5f3aef8/Material.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/f7/5bdcce51/KeyValuePair`2.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A8E33794-C006-4F2A-A201-ADE069162226/27/860e5744/MaterialEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/dd/a04e927e/Vector4.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/20/1b84799b/Application.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/86/cb39c4ee/SystemInfoShimBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/1a/1a0c04dd/Single.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5DE66FF1-1FCB-4513-8463-255B392B032B/08/eaeac9eb/Regex.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/c4/458d0d9a/SystemInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A8E33794-C006-4F2A-A201-ADE069162226/04/d36ed875/EditorGUI.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A8E33794-C006-4F2A-A201-ADE069162226/4c/7d5cd849/InspectorElement.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/08/15bbe8f8/EditorSystemInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/CreateSSSLUT.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -61,7 +54,6 @@
       <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/SurfaceInput.hlsl" />
       <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/Shaders/LitForwardPass.hlsl" />
       <option value="$PROJECT_DIR$/Dependency/com.unity.render-pipelines.universal@7.3.1/ShaderLibrary/Lighting.hlsl" />
-      <option value="$PROJECT_DIR$/Assets/Editor/CSVReader.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1koP2i8Bjsbfl1AlJVFTsu0GZCf" />
@@ -80,6 +72,7 @@
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.300164" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="XThreadsFramesViewSplitterKey" value="0.35572687" />
@@ -129,7 +122,7 @@
       <workItem from="1606575052767" duration="615000" />
       <workItem from="1606575839309" duration="2312000" />
       <workItem from="1606616613073" duration="2754000" />
-      <workItem from="1608707743778" duration="29449000" />
+      <workItem from="1608450223804" duration="3211000" />
     </task>
     <servers />
   </component>

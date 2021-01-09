@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Administrator\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Administrator\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_GraphicsPackage.2094404944.00" t="ExcludeRecursive" />
-    <e p="D:\MySelf\GraphicsPackage" t="IncludeRecursive">
+    <e p="C:\Users\Administrator\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_GraphicsPackage.-751534712.00" t="ExcludeRecursive" />
+    <e p="C:\workspace\GraphicsPackage" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -19,6 +19,11 @@
         </e>
         <e p="Shaders" t="Include">
           <e p="CreateSSSLUT.shader" t="Include" />
+        </e>
+        <e p="TianyuResource" t="Include">
+          <e p="Shaders" t="Include">
+            <e p="CharacterSkin.shader" t="Include" />
+          </e>
         </e>
         <e p="TutorialInfo" t="Include">
           <e p="Scripts" t="Include">

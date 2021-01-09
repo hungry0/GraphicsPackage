@@ -337,11 +337,11 @@ inline void InitializeBRDFData(half3 albedo, half metallic, half3 specular, half
 inline void InitializeBRDFData(SurfaceData surfaceData, out BRDFData outBRDFData)
 {
 #ifdef _SPECULAR_SETUP
-    half reflectivity = ReflectivitySpecular(specular);
+    half reflectivity = ReflectivitySpecular(surfaceData.specular);
     half oneMinusReflectivity = 1.0 - reflectivity;
 
-    outBRDFData.diffuse = albedo * (half3(1.0h, 1.0h, 1.0h) - specular);
-    outBRDFData.specular = specular;
+    outBRDFData.diffuse = surfaceData.albedo * (half3(1.0h, 1.0h, 1.0h) - surfaceData.specular);
+    outBRDFData.specular = surfaceData.specular;
 #else
 
     half oneMinusReflectivity = OneMinusReflectivityMetallic(surfaceData.metallic);
@@ -374,8 +374,6 @@ inline void InitializeBRDFData(SurfaceData surfaceData, out BRDFData outBRDFData
     outBRDFData.subsurfaceColor = surfaceData.subsurfaceColor;
 #endif
 }
-
-
 
 half3 EnvironmentBRDF(BRDFData brdfData, half3 indirectDiffuse, half3 indirectSpecular, half fresnelTerm)
 {
